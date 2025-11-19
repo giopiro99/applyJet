@@ -11,7 +11,9 @@ L’outcome dovrà essere una pagina web in cui l’utente possa mettere degli i
 
 **tecnologie utilizzate**
 C++11: Core logic per il calcolo finanziario (scaglioni IRPEF, detrazioni, INPS).
+
 cpp-httplib: Libreria header-only per trasformare il calcolatore C++ in un servizio REST.
+
 Docker & Docker Compose: Per la containerizzazione, l'isolamento dell'ambiente e l'orchestrazione dei servizi.
 Nginx: Utilizzato sia come web server per i file statici che come reverse proxy.
 HTML5 / JavaScript (Vanilla): Interfaccia utente essenziale e performante.
