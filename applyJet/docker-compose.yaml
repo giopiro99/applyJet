@@ -1,0 +1,39 @@
+secrets:
+  ssl_cert:
+    file: ./secrets/localhost.crt
+  ssl_key:
+    file: ./secrets/localhost.key
+
+services:
+    applybackend:
+        build: ./applybackend
+        container_name: applybackend
+        ports:
+            - "3000:3000"
+        networks:
+            - apply-jet
+    applyfrontend:
+        build: ./applyfrontend
+        container_name: applyfrontend
+        depends_on:
+            - applybackend
+        networks:
+            - apply-jet
+
+    applyserver:
+        build: ./applyserver
+        container_name: applyserver
+        ports:
+            - "8443:443"
+        depends_on:
+            - applyfrontend
+            - applybackend
+        secrets:
+            - ssl_cert
+            - ssl_key
+        networks:
+            - apply-jet
+
+networks:
+    apply-jet:
+        driver: bridge
