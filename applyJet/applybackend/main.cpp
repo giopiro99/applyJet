@@ -1,14 +1,14 @@
-#include "httplib.h"        // Include la libreria header-only per creare il server HTTP
-#include "Calculator.hpp"   // Include la tua classe Calculator con la logica finanziaria
-#include <iostream>         // Per input/output standard (std::cout, std::cerr)
-#include <sstream>          // Per costruire stringhe complesse (come il JSON)
-#include <iomanip>          // Per formattare i numeri (std::fixed, std::setprecision)
-#include <string>           // Per la gestione delle stringhe
+#include "httplib.h"
+#include "Calculator.hpp"
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <string>
 
 std::string build_json_response(const Calculator& calc) {
 	std::stringstream ss;
+
 	// Costruzione manuale del JSON. 
-	// std::fixed e std::setprecision(2) assicurano che i numeri abbiano sempre 2 decimali (formato valuta).
 	ss << "{"
 		<< "\"netto_annuale\": " << std::fixed << std::setprecision(2) << calc.getNettoAnnuale() << ","
 		<< "\"netto_mensile\": " << std::fixed << std::setprecision(2) << calc.getNettoMensile() << ","
@@ -19,7 +19,6 @@ std::string build_json_response(const Calculator& calc) {
 		<< "\"trattenute_inps\": " << std::fixed << std::setprecision(2) << calc.getTrattenuteINPS()
 		<< "}";
 	return ss.str();
-	// Restituisce la stringa costruita dallo stream
 }
 
 int main(void)
@@ -37,11 +36,9 @@ int main(void)
 			size_t start_pos = body.find(key);
 			if (start_pos == std::string::npos)
 				throw std::runtime_error("Chiave 'ral' non trovata nel JSON"); // Errore se non c'è la chiave
+
 			size_t value_pos = start_pos + key.length();
 
-			// Cerca la fine del valore numerico.
-			// Il valore finisce quando incontriamo una virgola (se ci sono altri campi) 
-			// o una parentesi graffa chiusa (se è l'ultimo campo).
 			size_t end_pos = body.find_first_of(",}", value_pos);
 			std::string ral_str;
 			if (end_pos != std::string::npos)
@@ -54,23 +51,17 @@ int main(void)
 			calculator.calculateAll();
 
 			std::string json_response = build_json_response(calculator);
-			
+
 			// Imposta il corpo della risposta HTTP e l'header Content-Type
 			res.set_content(json_response, "application/json");
 		}
 		catch (const std::exception& e)
 		{
 			std::cerr << "[ERROR] " << e.what() << std::endl;
-			// Imposta lo status code HTTP a 500 (Internal Server Error)
 			res.status = 500;
-			// Invia un JSON di errore al client per non rompere il frontend
 			res.set_content("{\"error\": \"Errore nel calcolo\"}", "application/json");
 		}
 	});
-
-	// Avvia il server e lo mette in ascolto.
-	// "0.0.0.0" significa che ascolta su tutte le interfacce di rete (necessario per Docker).
-	// 3000 è la porta interna del container.
 	std::cout << "Server in ascolto su 0.0.0.0:3000..." << std::endl;
 	svr.listen("0.0.0.0", 3000);
 	return 0;

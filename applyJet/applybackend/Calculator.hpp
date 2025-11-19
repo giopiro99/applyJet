@@ -60,8 +60,11 @@ class Calculator
 			void	calculateNettoAnnuale();
 			void	calculateNettoMensile();
 			void	calculateDetrazioni();
+			Calculator() {};
 	public:
 			Calculator( double );
+			Calculator( const Calculator& other);
+			Calculator& operator=(const Calculator& other);
 			~Calculator();
 
 			const double&	getTrattenuteINPS() const;

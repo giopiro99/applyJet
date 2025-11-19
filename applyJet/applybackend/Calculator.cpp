@@ -2,7 +2,34 @@
 #include <stdexcept>
 
 /*===============CONSTRUCTOR===============*/
-Calculator::Calculator( double ral) : _ral(ral), _trattenuteINPS(0.0), _imponibileIRPEF(0.0), _totaleTrattenute(0.0) {}
+Calculator::Calculator( double ral) :
+								_ral(ral), _trattenuteINPS(0.0),
+								_imponibileIRPEF(0.0), _irpefLorda(0),
+								_irpefNetta(0.0), _totaleTrattenute(0.0),
+								_detrazioni(0.0), _nettoAnnuale(0.0),
+								_nettoMensile(0.0) {}
+
+Calculator::Calculator(const Calculator& other) :
+								_ral(other._ral), _trattenuteINPS(other._trattenuteINPS), 
+								_imponibileIRPEF(other._imponibileIRPEF), _irpefLorda(other._irpefLorda),
+								_detrazioni(other._detrazioni), _nettoAnnuale(other._nettoAnnuale),
+								_nettoMensile(other._nettoMensile) {}
+
+/*===============OPERATOR===============*/
+Calculator&	Calculator::operator=(const Calculator& other)
+{
+	if (this != &other)
+	{
+		_ral = other._ral;
+		_trattenuteINPS = other._trattenuteINPS; 
+		_imponibileIRPEF = other._imponibileIRPEF;
+		_irpefLorda = other._irpefLorda;
+		_detrazioni = other._detrazioni;
+		_nettoAnnuale = other._nettoAnnuale;
+		_nettoMensile = other._nettoMensile;
+	}
+	return (*this);
+}
 
 /*===============METHODS===============*/
 void	Calculator::calculateTrattenuteINPS()
