@@ -17,6 +17,7 @@ Nginx: Utilizzato sia come web server per i file statici che come reverse proxy.
 HTML5 / JavaScript (Vanilla): Interfaccia utente essenziale e performante.
 
 **Struttura del progetto pensata da me:**
+```text
 applyJet/
 ├── Makefile                # Comandi rapidi per build e pulizia
 ├── docker-compose.yml      # Orchestrazione dei 3 servizi
