@@ -52,4 +52,6 @@ docker compose down
 **dopo aver fatto partire i container**:
 Accedi al Calcolatore: Apri il browser e visita: https://localhost:8443
 
-Nota: Non sono inclusi esoneri contributivi temporanei, detrazioni per carichi di famiglia o TFR per semplicita'.
+Note:
+-Non sono inclusi esoneri contributivi temporanei, detrazioni per carichi di famiglia o TFR per semplicita'.
+-É presente la cartella secrets con i file delle chiavi ssl per comodità, so che in un ambiente di sviluppo reale essi non dovrebbero essere nella repo.
