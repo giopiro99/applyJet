@@ -34,8 +34,7 @@ Il progetto copre un caso d'uso "Standard" con le seguenti assunzioni:
 ### dopo aver fatto partire i container:
 ***Accedi al Calcolatore: Apri il browser e visita: https://localhost:8443***
 
-### Note:
-***-Non sono inclusi esoneri contributivi temporanei, detrazioni per carichi di famiglia o TFR per semplicita'.***
+### Nota:
 ***-É presente la cartella secrets con i file delle chiavi ssl per comodità, so che in un ambiente di sviluppo reale essi non dovrebbero essere nella repo.***
 
 

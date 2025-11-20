@@ -2,7 +2,6 @@
 #include "Calculator.hpp"
 #include <iostream>
 #include <sstream>
-#include <iomanip>
 #include <string>
 
 std::string build_json_response(const Calculator& calc) {
@@ -10,13 +9,13 @@ std::string build_json_response(const Calculator& calc) {
 
 	// Costruzione manuale del JSON. 
 	ss << "{"
-		<< "\"netto_annuale\": " << std::fixed << std::setprecision(2) << calc.getNettoAnnuale() << ","
-		<< "\"netto_mensile\": " << std::fixed << std::setprecision(2) << calc.getNettoMensile() << ","
-		<< "\"totale_trattenute\": " << std::fixed << std::setprecision(2) << calc.getTotaleTrattenute() << ","
-		<< "\"irpef_netta\": " << std::fixed << std::setprecision(2) << calc.getIrpefNetta() << ","
-		<< "\"irpef_lorda\": " << std::fixed << std::setprecision(2) << calc.getIrpefLorda() << ","
-		<< "\"imponibile_irpef\": " << std::fixed << std::setprecision(2) << calc.getImponibileIRPEF() << ","
-		<< "\"trattenute_inps\": " << std::fixed << std::setprecision(2) << calc.getTrattenuteINPS()
+		<< "\"netto_annuale\": " << calc.getNettoAnnuale() << ","
+		<< "\"netto_mensile\": " << calc.getNettoMensile() << ","
+		<< "\"totale_trattenute\": " << calc.getTotaleTrattenute() << ","
+		<< "\"irpef_netta\": " << calc.getIrpefNetta() << ","
+		<< "\"irpef_lorda\": " << calc.getIrpefLorda() << ","
+		<< "\"imponibile_irpef\": " << calc.getImponibileIRPEF() << ","
+		<< "\"trattenute_inps\": " << calc.getTrattenuteINPS()
 		<< "}";
 	return ss.str();
 }
@@ -25,6 +24,7 @@ int main(void)
 {
 	// Crea l'istanza del server HTTP fornita dalla libreria cpp-httplib
 	httplib::Server svr;
+
 	// Definisce una rotta (endpoint) che risponde solo alle richieste HTTP POST
 	// L'URL è "/api/calcola".
 	svr.Post("/api/calcola", [](const httplib::Request& req, httplib::Response& res)
