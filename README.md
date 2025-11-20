@@ -1,4 +1,4 @@
-# Prototipo Calcolatore Busta Paga (Jet HR Task)
+# Prototipo Calcolatore Busta Paga (Jet Product Builder Task)
 
 Un prototipo full-stack progettato per simulare il calcolo della retribuzione netta (annuale e mensile) a partire dalla RAL, evidenziando le trattenute fiscali e previdenziali secondo il sistema italiano.
 
