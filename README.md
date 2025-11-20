@@ -5,7 +5,7 @@ Un prototipo full-stack progettato per simulare il calcolo della retribuzione ne
 ## Obiettivo
 Il calcolatore riceve in input una RAL e restituisce output dettagliati (Netto, IRPEF, INPS), in un'interfaccia web semplice e reattiva.
 
-Il progetto copre un caso d'uso "Standard" con le seguenti assunzioni:
+## Il progetto copre un caso d'uso "Standard" con le seguenti assunzioni:
 * **Profilo:** Impiegato a tempo indeterminato.
 * **Residenza:** Milano.
 * **Semplificazioni:** Non sono inclusi esoneri contributivi temporanei, detrazioni per carichi di famiglia o TFR.
@@ -17,7 +17,6 @@ Il progetto copre un caso d'uso "Standard" con le seguenti assunzioni:
 * **Docker & Docker Compose:** Per la containerizzazione e l'orchestrazione dell'ambiente.
 * **Nginx:** Reverse Proxy e Web Server per i file statici.
 * **HTML5 / JavaScript (Vanilla):** Interfaccia utente essenziale.
-
 
 ## comandi
 ***make build -> costruisce i container***
