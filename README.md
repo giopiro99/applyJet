@@ -19,27 +19,27 @@ Il progetto copre un caso d'uso "Standard" con le seguenti assunzioni:
 * **HTML5 / JavaScript (Vanilla):** Interfaccia utente essenziale.
 
 
-**comandi**
-## make build -> costruisce i container
-## make up -> fa partire i container
-## make down -> stoppa i container
-## make all -> fa tutti e 3 i comandi insieme
-## make fclean -> cancella la/e immagine/i docker create
-## make re -> make fclean + make all
+## comandi
+***make build -> costruisce i container***
+***make up -> fa partire i container***
+***make down -> stoppa i container***
+***make all -> fa tutti e 3 i comandi insieme***
+***make fclean -> cancella la/e immagine/i docker create***
+***make re -> make fclean + make all***
 
-**senza make file**
-### docker compose up --build -d
-### docker compose down
+### se non vuoi utilizzare il makefile
+***docker compose up --build -d***
+***docker compose down***
 
-**dopo aver fatto partire i container**:
-### Accedi al Calcolatore: Apri il browser e visita: https://localhost:8443
+### dopo aver fatto partire i container:
+***Accedi al Calcolatore: Apri il browser e visita: https://localhost:8443***
 
-**Note:**
-### -Non sono inclusi esoneri contributivi temporanei, detrazioni per carichi di famiglia o TFR per semplicita'.
-### -É presente la cartella secrets con i file delle chiavi ssl per comodità, so che in un ambiente di sviluppo reale essi non dovrebbero essere nella repo.
+### Note:
+***-Non sono inclusi esoneri contributivi temporanei, detrazioni per carichi di famiglia o TFR per semplicita'.***
+***-É presente la cartella secrets con i file delle chiavi ssl per comodità, so che in un ambiente di sviluppo reale essi non dovrebbero essere nella repo.***
 
 
-## Struttura del Progetto
+### Struttura del Progetto
 
 ```text
 applyJet/
