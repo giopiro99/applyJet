@@ -20,14 +20,20 @@ Il calcolatore riceve in input una RAL e restituisce output dettagliati (Netto, 
 
 ## comandi
 ***make build -> costruisce i container***
+
 ***make up -> fa partire i container***
+
 ***make down -> stoppa i container***
+
 ***make all -> fa tutti e 3 i comandi insieme***
+
 ***make fclean -> cancella la/e immagine/i docker create***
+
 ***make re -> make fclean + make all***
 
 ### se non vuoi utilizzare il makefile
 ***docker compose up --build -d***
+
 ***docker compose down***
 
 ### dopo aver fatto partire i container:
