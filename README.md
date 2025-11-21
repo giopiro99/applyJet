@@ -50,17 +50,17 @@ applyJet/
 ├── Makefile                # Comandi rapidi per build e pulizia
 ├── docker-compose.yml      # Orchestrazione dei 3 servizi
 │
-├── applybackend/           # BACKEND C++
+├── backend/                # BACKEND C++
 │   ├── main.cpp            # Server HTTP e gestione API
 │   ├── Calculator.cpp/hpp  # Logica di dominio finanziario
 │   ├── httplib.h           # Libreria server
 │   └── Dockerfile          # Build multi-stage
 │
-├── applyfrontend/          # FRONTEND
+├── frontend/               # FRONTEND
 │   ├── index.html          # UI del Calcolatore
 │   ├── script.js           # Logica client e fetch API
 │   └── Dockerfile          # Server Nginx statico
 │
-├── applyserver/            # PROXY
+├── reverse-proxy/          # PROXY
     ├── server.conf         # Configurazione routing
     └── Dockerfile          # Nginx Gateway
