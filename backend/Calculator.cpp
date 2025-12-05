@@ -34,12 +34,21 @@ Calculator&	Calculator::operator=(const Calculator& other)
 /*===============METHODS===============*/
 void	Calculator::calculateTrattenuteINPS()
 {
-	_trattenuteINPS = _ral * _aliquotaStandard;
+	double tmpRal = _ral;
+
+	if (hasBenefit)
+		tmpRal += benefit;
+	_trattenuteINPS = tmpRal * _aliquotaStandard;
 }
 
 void	Calculator::calculateImponibileIRPEF()
 {
+
 	_imponibileIRPEF = _ral - _trattenuteINPS;
+
+	if (hasBenefit)
+		_imponibileIRPEF += benefit;
+
 	if (_imponibileIRPEF < 0.0)
 		throw std::runtime_error("something get wrong in calculate IMPONIBILE IRPEF");
 }
@@ -52,12 +61,13 @@ void	Calculator::calculateIrpefLorda()
 	//reddito residuo > 28000 ALIQUOTA_2
 	//reddito residuo > 50000 ALIQUOTA_3
 
-	//Calcolo in cascata perche' l irpef lorda si calcola ogni volta sull eccedenza di quello scaglione e si va a scendere
-
+	//Calcolo in cascata perche' l irpef lorda si calcola ogni volta
+	//sull eccedenza di quello scaglione e si va a scendere
+	
 	const double ALIQUOTA_1 = 0.23;
 	const double ALIQUOTA_2 = 0.35;
 	const double ALIQUOTA_3 = 0.43;
-
+	
 	double redditoResiduo = _imponibileIRPEF;
 	double IRPEF_LORDA = 0.0;
 	double eccedenza = 0.0;
