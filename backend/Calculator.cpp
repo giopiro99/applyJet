@@ -34,21 +34,13 @@ Calculator&	Calculator::operator=(const Calculator& other)
 /*===============METHODS===============*/
 void	Calculator::calculateTrattenuteINPS()
 {
-	double tmpRal = _ral;
-
-	if (hasBenefit)
-		tmpRal += benefit;
-	_trattenuteINPS = tmpRal * _aliquotaStandard;
+	_trattenuteINPS = _ral * _aliquotaStandard;
 }
 
 void	Calculator::calculateImponibileIRPEF()
 {
 
 	_imponibileIRPEF = _ral - _trattenuteINPS;
-
-	if (hasBenefit)
-		_imponibileIRPEF += benefit;
-
 	if (_imponibileIRPEF < 0.0)
 		throw std::runtime_error("something get wrong in calculate IMPONIBILE IRPEF");
 }
