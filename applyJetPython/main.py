@@ -6,9 +6,13 @@
 #    By: gpirozzi <gpirozzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/05 14:17:34 by gpirozzi          #+#    #+#              #
-#    Updated: 2025/12/05 15:40:36 by gpirozzi         ###   ########.fr        #
+#    Updated: 2025/12/09 11:43:32 by gpirozzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
 
 class	Calculator:
 	def __init__(self, ral_input):
@@ -90,12 +94,31 @@ class	Calculator:
 		self.calculate_addizionali()
 		self.calculate_ral_netta()
 		return
+	def to_json(self):
+		return {
+				"netto_annuale": round(self.netto_annuale, 2),
+				"netto_mensile": round(self.netto_annuale / 13, 2),
+				"totale_trattenute": round(self.contributi_previdenziali + self.irpef_netta + self.addizionale_totale, 2),
+				"irpef_netta": round(self.irpef_netta, 2),
+				"irpef_lorda": round(self.irpef_lorda, 2),
+				"imponibile_irpef": round(self.imponibile_irpef, 2),
+				"trattenute_inps": round(self.contributi_previdenziali, 2)
+			}
 
-if __name__ == "__main__":
-	calc = Calculator(35000)
-	calc.calculate_all()
-	print(f"CONTRIBUTI INPS {calc.contributi_previdenziali:.2f}")
-	print(f"IRPEF NETTA {calc.irpef_netta:.2f}")
-	print(f"DETRAZIONI {calc.detrazioni:.2f}")
-	print(f"NETTO ANNUALE {calc.netto_annuale:.2f}")
-	print(f"NETTO MENSILE {calc.netto_annuale / 13:.2f}")
+@app.route('/api/calcola', methods=['POST'])
+def calcola():
+	try:
+		data = request.get_json()
+		if not data or 'ral' not in data:
+			return jsonify({"error: Parametro ral mancante"}), 400
+		ral = float(data['ral'])
+		calc = Calculator(ral)
+		calc.calculate_all()
+
+		response = calc.to_json()
+		return jsonify(response)
+	except Exception as e:
+		return jsonify({"error": str(e)}), 500
+
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=3000)
