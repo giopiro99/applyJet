@@ -6,11 +6,11 @@
 #    By: gpirozzi <gpirozzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/05 14:17:34 by gpirozzi          #+#    #+#              #
-#    Updated: 2025/12/09 11:43:32 by gpirozzi         ###   ########.fr        #
+#    Updated: 2025/12/10 13:59:57 by gpirozzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify # type: ignore
 
 app = Flask(__name__)
 
